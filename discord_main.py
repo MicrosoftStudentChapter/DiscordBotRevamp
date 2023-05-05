@@ -21,7 +21,7 @@ class CustomHelpCommand(commands.HelpCommand):
     def get_ending_note(self):
         command_name = self.invoked_with
         return "Type {0}{1} <command/category> for more information | [Optional Arg], <Required Arg>".format(
-            self.clean_prefix, command_name)
+            get_prefix(), command_name)
 
     async def send_bot_help(self, mapping):
         help_command = discord.Embed(
@@ -79,8 +79,8 @@ class CustomHelpCommand(commands.HelpCommand):
 
 #  setting up indents
 intents = discord.Intents.default()
-intents.members = True
-client = commands.Bot(command_prefix=get_prefix(), intents=intents, case_insensitive=True,
+intents.message_content = True
+client = commands.Bot(command_prefix='!', intents=intents, case_insensitive=True,
                       help_command=CustomHelpCommand())
 
 
